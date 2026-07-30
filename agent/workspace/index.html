@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#0b2f57">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Agent Workspace | CoverageFit</title>
+  <meta name="description" content="Internal CoverageFit consultation preparation workspace.">
+  <link rel="icon" href="/assets/images/coveragefit-mark.svg">
+  <link rel="stylesheet" href="workspace.css">
+</head>
+<body>
+  <a class="skip-link" href="#workspace-main">Skip to workspace</a>
+
+  <header class="workspace-header">
+    <div class="workspace-header__inner">
+      <a class="workspace-brand" href="/" aria-label="CoverageFit home">
+        <img src="/assets/images/coveragefit-logo-board.png" alt="CoverageFit">
+      </a>
+      <div class="workspace-header__context">
+        <span class="workspace-badge cf-badge">Internal</span>
+        <span>Agent Workspace</span>
+      </div>
+      <div class="workspace-header__actions">
+        <button class="button button--secondary cf-button cf-button--secondary" id="refreshWorkspace" type="button" aria-keyshortcuts="Alt+R" title="Refresh Workspace data (Alt+R)">Refresh data</button>
+        <a class="button button--primary cf-button cf-button--primary" href="/home/report/">Open customer report</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="workspace-main" id="workspace-main" tabindex="-1">
+    <div class="sr-only" id="workspaceA11yInstructions">Use the conversation timeline or consultation checklist to move through review topics. Checklist changes are saved automatically. Press Alt+R to refresh Workspace data or Alt+C to show or hide the consultation checklist.</div>
+    <div class="sr-only" id="workspaceAnnouncements" role="status" aria-live="polite" aria-atomic="true"></div>
+    <section class="workspace-intro" aria-labelledby="workspace-title">
+      <div>
+        <span class="eyebrow">Consultation preparation</span>
+        <h1 id="workspace-title">Home Protection Review</h1>
+        <p id="workspaceSubtitle">A focused internal view of the customer’s latest CoverageFit assessment.</p>
+      </div>
+      <div class="workspace-status" id="workspaceStatus" role="status" aria-live="polite">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>Checking saved assessment data</span>
+      </div>
+    </section>
+
+
+    <section class="workspace-loading" id="workspaceLoading" aria-labelledby="workspaceLoadingTitle" aria-busy="true">
+      <div class="sr-only" id="workspaceLoadingTitle">Preparing Agent Workspace</div>
+      <div class="workspace-loading__grid" aria-hidden="true">
+        <article class="workspace-card cf-card workspace-skeleton workspace-skeleton--summary">
+          <div class="skeleton-line skeleton-line--eyebrow"></div>
+          <div class="skeleton-line skeleton-line--title"></div>
+          <div class="workspace-skeleton__summary">
+            <div class="skeleton-score"></div>
+            <div class="workspace-skeleton__copy">
+              <div class="skeleton-line skeleton-line--wide"></div>
+              <div class="skeleton-line skeleton-line--medium"></div>
+              <div class="skeleton-facts"><span></span><span></span><span></span></div>
+            </div>
+          </div>
+        </article>
+        <article class="workspace-card cf-card workspace-skeleton">
+          <div class="skeleton-line skeleton-line--eyebrow"></div>
+          <div class="skeleton-line skeleton-line--title"></div>
+          <div class="skeleton-grid"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        </article>
+        <article class="workspace-card cf-card workspace-skeleton workspace-skeleton--timeline">
+          <div class="skeleton-line skeleton-line--eyebrow"></div>
+          <div class="skeleton-line skeleton-line--title"></div>
+          <div class="skeleton-timeline"><span></span><span></span><span></span><span></span></div>
+        </article>
+        <article class="workspace-card cf-card workspace-skeleton workspace-skeleton--recommendations">
+          <div class="skeleton-line skeleton-line--eyebrow"></div>
+          <div class="skeleton-line skeleton-line--title"></div>
+          <div class="skeleton-recommendations"><span></span><span></span><span></span></div>
+        </article>
+      </div>
+      <aside class="checklist-sidebar workspace-skeleton workspace-skeleton--sidebar" aria-hidden="true">
+        <div class="skeleton-line skeleton-line--eyebrow"></div>
+        <div class="skeleton-line skeleton-line--title"></div>
+        <div class="skeleton-progress"></div>
+        <div class="skeleton-checklist"><span></span><span></span><span></span><span></span></div>
+      </aside>
+    </section>
+
+    <section class="workspace-state workspace-state--page cf-state" id="emptyState" hidden aria-labelledby="emptyStateTitle" data-state="empty">
+      <div class="workspace-state__icon" aria-hidden="true"><img src="/assets/images/coveragefit-mark.svg" alt=""></div>
+      <div class="workspace-state__content">
+        <span class="eyebrow" id="emptyStateEyebrow">No assessment loaded</span>
+        <h2 id="emptyStateTitle">Complete a Home assessment on this device first.</h2>
+        <p id="emptyStateMessage">The workspace reads the latest saved Home Protection Snapshot from this browser. It does not create or modify customer assessment data.</p>
+        <div class="workspace-state__actions">
+          <a class="button button--primary cf-button cf-button--primary" id="emptyStatePrimaryAction" href="/assessment/">Open Home assessment</a>
+          <button class="button button--secondary cf-button cf-button--secondary" id="emptyStateRetry" type="button" data-workspace-action="retry">Try again</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="workspace-layout" id="workspaceLayout" hidden>
+      <div class="workspace-grid" id="workspaceGrid">
+      <section class="workspace-card cf-card workspace-card--summary" aria-labelledby="summaryTitle">
+        <div class="card-heading cf-section-heading">
+          <div>
+            <span class="eyebrow">Executive summary</span>
+            <h2 id="summaryTitle">Consultation at a glance</h2>
+          </div>
+          <span class="data-label" id="assessmentDate">Date unavailable</span>
+        </div>
+        <div class="summary-layout">
+          <div class="score-panel" aria-label="Protection preparedness score">
+            <strong id="scoreValue">—</strong>
+            <span>Protection Score</span>
+            <em id="scoreBand">Review Summary</em>
+          </div>
+          <div class="summary-copy">
+            <p class="summary-lead" id="executiveSummary"></p>
+            <dl class="summary-facts">
+              <div><dt>Customer</dt><dd id="customerName">Not provided</dd></div>
+              <div><dt>Primary priority</dt><dd id="primaryPriority">No major priority identified</dd></div>
+              <div><dt>Positive starting point</dt><dd id="primaryStrength">Assessment completed</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="workspace-card cf-card workspace-card--client-intake" aria-labelledby="clientIntakeTitle">
+        <div class="card-heading cf-section-heading">
+          <div>
+            <span class="eyebrow">Client intake</span>
+            <h2 id="clientIntakeTitle">Contact and campaign context</h2>
+          </div>
+          <span class="data-label" id="clientIntakeStatus">Assessment provided</span>
+        </div>
+        <dl class="client-intake-grid" id="clientIntakeGrid">
+          <div><dt>Name</dt><dd id="clientIntakeName">Not provided</dd></div>
+          <div><dt>Phone</dt><dd id="clientIntakePhone">Not provided</dd></div>
+          <div><dt>Email</dt><dd id="clientIntakeEmail">Not provided</dd></div>
+          <div><dt>Property</dt><dd id="clientIntakeProperty">Not provided</dd></div>
+          <div><dt>Reason for review</dt><dd id="clientIntakeReason">General coverage review</dd></div>
+          <div><dt>Entry source</dt><dd id="clientIntakeSource">CoverageFit direct</dd></div>
+        </dl>
+        <p class="card-note" id="clientIntakeNote">Confirm the client’s contact information and review reason before beginning the consultation.</p>
+      </section>
+
+      <section class="workspace-card cf-card" aria-labelledby="propertyTitle">
+        <div class="card-heading cf-section-heading">
+          <div>
+            <span class="eyebrow">Property</span>
+            <h2 id="propertyTitle">Property snapshot</h2>
+          </div>
+          <span class="data-label" id="propertyConfidence">Confirmation status unavailable</span>
+        </div>
+        <div class="workspace-inline-state cf-state" id="propertyState" hidden role="status"></div>
+        <dl class="property-grid" id="propertyGrid"></dl>
+        <p class="card-note" id="propertyNote"></p>
+      </section>
+
+      <section class="workspace-card cf-card workspace-card--timeline" aria-labelledby="conversationTimelineTitle">
+        <div class="card-heading cf-section-heading">
+          <div>
+            <span class="eyebrow">Conversation timeline</span>
+            <h2 id="conversationTimelineTitle">Guide the consultation</h2>
+          </div>
+          <span class="data-label" id="conversationTimelineSummary">Preparing timeline</span>
+        </div>
+        <div class="conversation-timeline" id="conversationTimeline" role="region" aria-labelledby="conversationTimelineTitle" aria-describedby="workspaceA11yInstructions">
+          <div class="conversation-timeline__empty">Preparing conversation timeline.</div>
+        </div>
+      </section>
+
+      <section class="workspace-card cf-card workspace-card--recommendations" aria-labelledby="recommendationsTitle">
+        <div class="card-heading cf-section-heading">
+          <div>
+            <span class="eyebrow">Review priorities</span>
+            <h2 id="recommendationsTitle">Top recommendation topics</h2>
+          </div>
+          <span class="data-label">Educational, not underwriting</span>
+        </div>
+        <div class="workspace-inline-state cf-state" id="recommendationState" hidden role="status"></div>
+        <div class="recommendation-list" id="recommendationList"></div>
+      </section>
+      </div>
+
+      <aside class="checklist-sidebar is-loading" id="checklistSidebar" aria-labelledby="checklistSidebarTitle" aria-describedby="workspaceA11yInstructions" data-state="loading">
+        <div class="checklist-sidebar__header">
+          <div>
+            <span class="eyebrow">Consultation checklist</span>
+            <h2 id="checklistSidebarTitle">Stay on track</h2>
+          </div>
+          <button class="checklist-sidebar__toggle" id="checklistSidebarToggle" type="button" aria-expanded="true" aria-keyshortcuts="Alt+C" title="Show or hide consultation checklist (Alt+C)" aria-controls="checklistSidebarBody">
+            <span class="checklist-sidebar__toggle-label">Hide</span>
+            <span class="checklist-sidebar__toggle-icon" aria-hidden="true">⌃</span>
+          </button>
+        </div>
+
+        <div class="checklist-sidebar__body" id="checklistSidebarBody">
+          <section class="checklist-progress-placeholder checklist-progress" id="checklistProgress" aria-label="Consultation progress">
+            <div class="checklist-progress-placeholder__row">
+              <span>Consultation progress</span>
+              <strong id="checklistProgressPlaceholder">0%</strong>
+            </div>
+            <div class="checklist-progress__track cf-progress-track" role="progressbar" aria-label="Checklist completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="checklistProgressTrack">
+              <span id="checklistProgressBar"></span>
+            </div>
+            <div class="checklist-progress__metrics">
+              <div><strong id="checklistProgressCount">0/0</strong><span>Items complete</span></div>
+              <div><strong id="checklistRemainingMinutes">0 min</strong><span>Remaining</span></div>
+            </div>
+            <div class="checklist-progress__phase">
+              <span>Current phase</span>
+              <strong id="checklistCurrentPhase">Preparing</strong>
+            </div>
+            <p id="checklistOverviewText">Preparing consultation phases and discussion items.</p>
+            <div class="checklist-progress__complete" id="checklistCompleteState" hidden role="status">
+              <strong>Consultation complete</strong>
+              <span>Every checklist item has been reviewed.</span>
+            </div>
+          </section>
+
+          <div class="checklist-shell-state checklist-shell-state--loading checklist-loading-skeleton" id="checklistLoadingState" role="status" aria-live="polite">
+            <div class="sr-only">Preparing checklist from the conversation plan.</div>
+            <div class="checklist-loading-skeleton__progress" aria-hidden="true"></div>
+            <div class="checklist-loading-skeleton__items" aria-hidden="true">
+              <span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+
+          <div class="checklist-shell-state checklist-shell-state--empty workspace-inline-state cf-state" id="checklistEmptyState" hidden role="status">
+            <strong>No checklist available</strong>
+            <p>A checklist will appear after a valid conversation plan is prepared.</p>
+            <button class="button button--secondary button--compact cf-button cf-button--secondary cf-button--compact" type="button" data-workspace-action="retry">Prepare again</button>
+          </div>
+
+          <div class="checklist-shell-state checklist-shell-state--error workspace-inline-state cf-state" id="checklistErrorState" hidden role="alert">
+            <strong>Checklist unavailable</strong>
+            <p>The checklist shell loaded, but checklist state could not be prepared.</p>
+            <button class="button button--secondary button--compact cf-button cf-button--secondary cf-button--compact" type="button" data-workspace-action="retry">Retry checklist</button>
+          </div>
+
+          <div class="workspace-inline-state workspace-inline-state--warning cf-state" id="checklistStorageState" hidden role="status">
+            <strong>Progress cannot be saved</strong>
+            <p>Your checklist still works in this tab, but browser storage is unavailable. Keep this page open until the consultation is complete.</p>
+          </div>
+
+          <section class="checklist-phase-shell" id="checklistPhaseShell" hidden aria-label="Checklist phase region">
+            <div class="checklist-phase-shell__heading">
+              <span>Consultation phases</span>
+              <button class="checklist-reset-all" id="checklistResetAll" type="button" data-checklist-action="reset-all" disabled>Reset all</button>
+            </div>
+            <div class="checklist-phase-list cf-list" id="checklistPhaseList" role="list"></div>
+          </section>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="workspace-footer">
+    <span>CoverageFit Agent Workspace</span>
+    <span>Virginia Tam Insurance Agency · Internal consultation preparation</span>
+  </footer>
+
+  <script src="/assets/js/property-intelligence.js"></script>
+  <script src="/assets/js/producer-config.js"></script>
+  <script src="/assets/js/workspace-data.js"></script>
+  <script src="/assets/js/conversation-planner.js"></script>
+  <script src="/assets/js/consultation-checklist.js"></script>
+  <script src="/assets/js/workspace-motion.js"></script>
+  <script src="/assets/js/print-adapters.js"></script>
+  <script src="/assets/js/print-sections.js"></script>
+  <script src="/assets/js/print-visibility.js"></script>
+  <script src="/assets/js/print/models/executive-summary-model.js"></script>
+  <script src="/assets/js/print/models/property-summary-model.js"></script>
+  <script src="/assets/js/print/models/recommendation-model.js"></script>
+  <script src="/assets/js/print/sections/executive-summary.js"></script>
+  <script src="/assets/js/print/sections/property-summary.js"></script>
+  <script src="/assets/js/print/sections/recommendations.js"></script>
+  <script src="/assets/js/print/models/checklist-model.js"></script>
+  <script src="/assets/js/print/sections/checklist.js"></script>
+  <script src="/assets/js/print/models/timeline-model.js"></script>
+  <script src="/assets/js/print/sections/timeline.js"></script>
+  <script src="/assets/js/print/sections/metadata.js"></script>
+  <script src="/assets/js/document-composer.js"></script>
+  <script src="/assets/js/print/report-shell.js"></script>
+  <script src="/assets/js/print-renderers.js"></script>
+  <script src="/assets/js/print-engine.js"></script>
+  <script src="/assets/js/agent-workspace.js"></script>
+</body>
+</html>
